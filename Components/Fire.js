@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import  firebase from 'firebase';
 class Fire {
     constructor() {
         this.init();
@@ -34,13 +34,13 @@ class Fire {
         }
       };
       // 1.
-     ref() {
+    get ref() {
         return firebase.database().ref('messages');
     }
     // 2.
     on = (callback) =>{
-        refer = this.ref
-        refer
+            this.ref
+            .limitToLast(20)
             .on('child_added', snapshot => callback(this.parse(snapshot)));
     }
     parse = (snapshot) => {
@@ -76,6 +76,7 @@ class Fire {
     send = messages => {
         for (let i = 0; i < messages.length; i++) {
         const { text, user } = messages[i];
+        console.log(text,user)
         const message = {
             text,
             user,
@@ -85,4 +86,6 @@ class Fire {
         }
   };
 }
+
+Fire.shared = new Fire();
 export default Fire;

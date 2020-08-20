@@ -7,6 +7,7 @@ import {
     TouchableOpacity
   } from 'react-native';
   export default class Main extends Component {
+
     constructor(props){
         super(props);
         this.state={
@@ -14,7 +15,7 @@ import {
         }
     }
     onPress = () => {
-        this.props.navigation.navigate('Chat');
+        this.props.navigation.navigate('Chat',{"name":this.state.name});
       }
     render() {
       return (
