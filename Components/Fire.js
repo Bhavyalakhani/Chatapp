@@ -41,6 +41,7 @@ class Fire {
     on = (callback) =>{
             this.ref
             .limitToLast(20)
+            .orderByChild('timestamp')
             .on('child_added', snapshot => callback(this.parse(snapshot)));
     }
     parse = (snapshot) => {
@@ -76,11 +77,13 @@ class Fire {
     send = messages => {
         for (let i = 0; i < messages.length; i++) {
         const { text, user } = messages[i];
+        console.log(messages)
         console.log(text,user)
         const message = {
             text,
             user,
             timestamp: this.timestamp,
+            createdAt:new Date()
         };
         this.append(message);
         }

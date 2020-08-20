@@ -18,10 +18,16 @@ export default class Chat extends Component {
 
 
     componentDidMount() {
-        Fire.shared.on(message =>
+        Fire.shared.on(message =>{
+            console.log(message)
         this.setState(previousState => ({
             messages: GiftedChat.append(previousState.messages, message),
         }))
+        console.log(this.state.messages)
+/*        message=this.state.messages.sort((a,b) => b.timestamp - a.timestamp)
+        this.setState({messages:message}) */
+
+    }
         );
         }
     componentWillUnmount() {
